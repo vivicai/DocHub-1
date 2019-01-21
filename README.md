@@ -294,24 +294,13 @@ https://www.sogou.com/web?query=filetype%3Apdf+%E5%85%A5%E9%97%A8%E6%95%99%E7%A8
 - Gitee: https://gitee.com/truthhun/DocHubTemplate4Mobile
 
 <a name="aboutus"></a>
-## 关于本人
 
-2014年7月本科"毕业"踏入IT行业；Web全栈工程师；什么都懂一点，什么都不精通。
 
 <a name="support"></a>
 ## 赞助我
 
-由于整套程序都是独立一个人开发完成，限于个人经验、知识面和技术栈体系的限制，现在的程序不会是完美的，但至少，我在努力，我会争取把开源文库程序做好，缩短与成熟文库系统的差距。
-
-所以，给出你的意见和建议，给出你的打赏与鼓励，让我知道，我不是一个人在孤独地战斗。
-
-> 赞助的时候，麻烦备注一下你的称呼，以便公开并表示感谢
-
-<a name="alipay"></a>
-### 支付宝打赏赞助
-![支付宝打赏](static/tutorial/alipay.jpg)
 
 
 <a name="wxpay"></a>
 ### 微信打赏赞助
-![微信打赏](static/tutorial/wxpay.jpg)
+![微信打赏](static/tutorial/wxpay.png)
