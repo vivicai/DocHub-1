@@ -5,7 +5,7 @@
             <div class="panel panel-default wenku-noborder">
                 <div class="panel-body">
                     <h1>
-                        <img alt="{{.Doc.Ext}}文档" src="/static/Home/default/img/{{.Doc.ExtCate}}_24.png"/> {{.Doc.Title}}
+                        <img alt="{{.Doc.Ext}}文档" src="/static/home/default/img/{{.Doc.ExtCate}}_24.png"/> {{.Doc.Title}}
                         {{if gt $.AdminId 0}}
                         <a href="/admin/doc/action?type=remove&id={{.Doc.Id}}" class="text-muted wenku-tooltip wenku-ajax-get" title="将文档移入回收站"><i class="fa fa-recycle"></i></a>
                         {{end}}
@@ -40,17 +40,18 @@
                     <div class="wenku-viewer" id="wenku-viewer" data-scale="9">
                         {{range $index,$el:=.PreviewPages}}
                             {{if gt $index 1}}
-                            <img src="/static/Common/img/loading.gif" data-original="{{$.PreviewDomain}}/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
+                                {{/*{{Xmd5 $.Doc.Md5}}*/}}
+                            <img src="/static/Common/img/loading.gif" data-original="{{$.PreviewDomain}}/static/home/default/img/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
                             {{else}}
-                            <img src="{{$.PreviewDomain}}/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
+                            <img src="{{$.PreviewDomain}}/static/home/default/img/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
                             {{end}}
                         {{end}}
 
                         {{if gt $.TotalPages $.PageShow}}
-                        <div class="wenku-viewer-more text-center" data-next="{{CalcInt $.PageShow "+" 1}}" data-ext="{{Default $.Doc.PreviewExt "svg"}}" data-svg="{{$.PreviewDomain}}/{{Xmd5 $.Doc.Md5}}/">
+                        <div class="wenku-viewer-more text-center" data-next="{{CalcInt $.PageShow "+" 1}}" data-ext="{{Default $.Doc.PreviewExt "svg"}}" data-svg="{{$.PreviewDomain}}/static/home/default/img/{{Xmd5 $.Doc.Md5}}/">
 
-                            <div>下载文档到电脑，方便使用</div>
-                            <div><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#ModalDownload"><i class="fa fa-cloud-download"></i> 下载文档</a></div>
+                            {{/*<div>下载文档到电脑，方便使用</div>*/}}
+                            {{/*<div><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#ModalDownload"><i class="fa fa-cloud-download"></i> 下载文档</a></div>*/}}
 
                         {{if and (gt (.Doc.PreviewPage | Interface2Int) 0) (gt $.TotalPages (.Doc.PreviewPage | Interface2Int))}}
                             <a href="javascript:void(0);" class="wenku-viewer-more-btn">
@@ -89,7 +90,7 @@
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#ModalReport" class="btn btn-primary btn-sm"><i class="fa fa-warning"></i> 举报</a>
                         </div>
                         <div class="pull-right wenku-mgl-15px">
-                            <a href="javascript:void(0);" rel="nofollow" data-toggle="modal" data-target="#ModalDownload" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-cloud-download"></i> 下载<span class="hidden-xs">原文档</span>({{FormatByte (Interface2Int .Doc.Size)}})</a>
+                            {{/*<a href="javascript:void(0);" rel="nofollow" data-toggle="modal" data-target="#ModalDownload" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-cloud-download"></i> 下载<span class="hidden-xs">原文档</span>({{FormatByte (Interface2Int .Doc.Size)}})</a>*/}}
                         </div>
                         <div class="pull-right">
                             {{if DoesCollect (Interface2Int .Doc.Id) .LoginUid}}
@@ -121,7 +122,7 @@
 
                     <ul class="wenku-tabs-list">
                         {{range .Hots}}
-                        <li><img alt="{{.Ext}}文档" src="/static/Home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
+                        <li><img alt="{{.Ext}}文档" src="/static/home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
                         {{end}}
                     </ul>
                 </div>
@@ -136,7 +137,7 @@
 
                     <ul class="wenku-tabs-list">
                         {{range .News}}
-                        <li><img alt="{{.Ext}}文档" src="/static/Home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
+                        <li><img alt="{{.Ext}}文档" src="/static/home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
                         {{end}}
                     </ul>
 
@@ -184,7 +185,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <p class="navbar-text"><i class="fa fa-database"></i>&nbsp;&nbsp;{{.Doc.Price}}&nbsp;&nbsp;个金币 </p>
-                    <li class="active" data-toggle="modal" data-target="#ModalDownload"><a href="javascript:void(0);"><i class="fa fa-cloud-download em14"></i> 下载文档({{FormatByte (Interface2Int .Doc.Size)}})</a></li>
+                    {{/*<li class="active" data-toggle="modal" data-target="#ModalDownload"><a href="javascript:void(0);"><i class="fa fa-cloud-download em14"></i> 下载文档({{FormatByte (Interface2Int .Doc.Size)}})</a></li>*/}}
                 </ul>
             </div>
             <div class="col-xs-3">
