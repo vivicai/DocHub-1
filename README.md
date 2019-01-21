@@ -1,6 +1,22 @@
-![LOGO](static/Home/default/img/logo.png)
+![LOGO](static/home/default/img/logo.png)
 
 ------
+
+# Dochub
+参考百度文库，使用Beego（Golang）开发的开源文库系统(来源于TruthHun，进行了二次开发)
+
+
+本项目依据TruthHun/Dochub进行了二次改进，适应本地存储功能<br>
+
+工作流soffice->pdf->svg
+
+
+更新日志：2019/1/18<br>
+1.更改了文件转化为svg格式后取消本地文件删除功能及不上传到OSS<br>
+2.由于本人进行了偷懒直接将上传的文件放至static/home/default/img下便于html直接调用<br>
+
+相关文档介绍参考:<br>
+https://github.com/TruthHun/DocHub<br>
 
 目录：
 - [文库简介](#intro)
