@@ -49,7 +49,7 @@ func (this *BaseController) Prepare() {
 	//初始化
 	this.Data["LoginUid"] = this.IsLogin
 	//当前模板静态文件
-	this.Data["TplStatic"] = "/static/Home/" + this.TplTheme
+	this.Data["TplStatic"] = "/static/home/" + this.TplTheme
 
 	version := helper.VERSION
 	if helper.Debug { //debug模式下，每次更新js

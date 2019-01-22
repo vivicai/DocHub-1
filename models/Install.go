@@ -45,7 +45,7 @@ func installSys() {
 			</style>
 			<div><strong>尊敬的用户</strong></div>
 			<p>您好，非常感谢您对DocHub文库(<a href="https://github.com/TruthHun/DocHub" target="_blank" title="DocHub文库">DocHub</a>)的关注和热爱</p>
-			<p>您本次申请注册成为DocHub文库会员的邮箱验证码是: <strong style="font-size: 30px;color: red;">{code}</strong></p>
+			<p>您本次申请注册成为Doc文库会员的邮箱验证码是: <strong style="font-size: 30px;color: red;">{code}</strong></p>
 			<p>如果非您本人操作，请忽略该邮件。</p>`,
 		TplEmailFindPwd: `<style type="text/css">
 				p{text-indent: 2em;}

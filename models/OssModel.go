@@ -7,8 +7,6 @@ import (
 
 	"strings"
 
-	"os"
-
 	"time"
 
 	"fmt"
@@ -123,6 +121,8 @@ func (*Oss) DefaultPicture(picture, style string, ext ...string) (url string) {
 //@param            IsGzip           是否做gzip压缩，做gzip压缩的话，需要修改oss中对象的响应头，设置gzip响应
 func (this *Oss) MoveToOss(local, save string, IsPreview, IsDel bool, IsGzip ...bool) error {
 	bucket, err := this.NewBucket(IsPreview)
+	fmt.Print(err)
+	fmt.Print("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr\n")
 	if err != nil {
 		helper.Logger.Error("OSS Bucket初始化错误：%v", err.Error())
 		return err
@@ -154,18 +154,18 @@ func (this *Oss) MoveToOss(local, save string, IsPreview, IsDel bool, IsGzip ...
 			ioutil.WriteFile(local, by.Bytes(), 0777)
 		}
 	}
-	err = bucket.PutObjectFromFile(save, local)
-	if err != nil {
-		helper.Logger.Error("文件移动到OSS失败：%v", err.Error())
-	}
+	//err = bucket.PutObjectFromFile(save, local)
+	//if err != nil {
+	//	helper.Logger.Error("文件移动到OSS失败：%v", err.Error())
+	//}
 	//如果是开启了gzip，则需要设置文件对象的响应头
 	if isGzip {
 		bucket.SetObjectMeta(save, oss.ContentEncoding("gzip")) //设置gzip响应头
 	}
-
-	if err == nil && IsDel {
-		err = os.Remove(local)
-	}
+	fmt.Print("\n文件上传后，是否删除本地文件判断已注释\n")
+	//if err == nil && IsDel {
+	//	err = os.Remove(local)
+	//}
 
 	return err
 }
@@ -193,7 +193,8 @@ func (this *Oss) BuildSign(object string, expire ...int) (url string) {
 		this.UrlExpire = expire[0]
 	}
 	if slice := strings.Split(bucket.SignedURL(object, time.Now().Add(time.Duration(this.UrlExpire)*time.Second)), "aliyuncs.com/"); len(slice) == 2 {
-		url = this.DownloadUrl + slice[1]
+		//url = this.DownloadUrl + slice[1]
+		url = this.DownloadUrl
 	}
 	return
 }

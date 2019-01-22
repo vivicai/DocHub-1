@@ -35,16 +35,21 @@ func (this *UploadController) SegWord() {
 
 //文档上传页面
 func (this *UploadController) Get() {
-	cond := orm.NewCondition().And("status", 1)
-	data, _, _ := models.GetList(models.GetTableCategory(), 1, 2000, cond, "Sort", "Title")
-	this.Xsrf()
-	this.Data["Seo"] = models.NewSeo().GetByPage("PC-Upload", "文档上传-文档分享", "文档上传,文档分享", "文档上传-文档分享", this.Sys.Site)
-	this.Data["Cates"], _ = conv.InterfaceToJson(data)
-	this.Data["json"] = data
-	this.Data["IsUpload"] = true
-	this.Data["PageId"] = "wenku-upload"
-	this.Data["MaxSize"] = models.NewSys().GetByField("MaxFile").MaxFile
-	this.TplName = "index.html"
+	if this.IsLogin > 0 {
+		cond := orm.NewCondition().And("status", 1)
+		data, _, _ := models.GetList(models.GetTableCategory(), 1, 2000, cond, "Sort", "Title")
+		this.Xsrf()
+		this.Data["Seo"] = models.NewSeo().GetByPage("PC-Upload", "文档上传-文档分享", "文档上传,文档分享", "文档上传-文档分享", this.Sys.Site)
+		this.Data["Cates"], _ = conv.InterfaceToJson(data)
+		this.Data["json"] = data
+		this.Data["IsUpload"] = true
+		this.Data["PageId"] = "wenku-upload"
+		this.Data["MaxSize"] = models.NewSys().GetByField("MaxFile").MaxFile
+		this.TplName = "index.html"
+	} else {
+		this.Redirect("/user/login?t="+time.Now().String(), 302)
+		this.TplName = "login.html"
+	}
 }
 
 //文档执行操作
@@ -60,9 +65,10 @@ func (this *UploadController) Post() {
 	var (
 		ext     string //文档扩展名
 		tmpfile string //存在服务器的临时文件
-		dir     = fmt.Sprintf("./uploads/%v/%v", time.Now().Format("2006/01/02"), this.IsLogin)
-		form    models.FormUpload
-		err     error
+		//dir     = fmt.Sprintf("./uploads/%v/%v", time.Now().Format("2006/01/02"), this.IsLogin)
+		dir  = fmt.Sprintf("./static/home/default/img")
+		form models.FormUpload
+		err  error
 	)
 
 	//1、用户是否已登录

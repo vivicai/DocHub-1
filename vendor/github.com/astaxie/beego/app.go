@@ -211,6 +211,7 @@ func (app *App) Run(mws ...MiddleWare) {
 	}
 	if BConfig.Listen.EnableHTTP {
 		go func() {
+			//app.Server.Addr = addr
 			app.Server.Addr = addr
 			logs.Info("http server Running on http://%s", app.Server.Addr)
 			if BConfig.Listen.ListenTCP4 {

@@ -17,17 +17,31 @@ type ViewController struct {
 }
 
 func (this *ViewController) Get() {
+	fmt.Print("开始执行浏览程序\n")
 	id, _ := this.GetInt(":id")
+	fmt.Print("输出id为:\n")
+	fmt.Print(id)
+	fmt.Print("判断id是否小于1开始\n")
 	if id < 1 {
 		this.Redirect("/", 302)
 		return
+		fmt.Print("判断id是否小于1中。。。。\n")
 	}
+	fmt.Print("判断id是否小于1结束\n")
 
 	doc, rows, err := models.NewDocument().GetById(id)
+	fmt.Print("输出doc,rows，err信息\n")
+	fmt.Print(doc)
+	fmt.Print("\n")
+	fmt.Print(rows)
+	fmt.Print("\n")
+	fmt.Print(err)
+	fmt.Print("判断err是否为不等于空\n")
 	if err != nil || rows != 1 {
 		this.Abort("404")
 	}
 	//文档已被删除
+	fmt.Print("判断文档是否被删除\n")
 	if fmt.Sprintf("%v", doc["Status"]) == "-1" {
 		this.Abort("404")
 	}
@@ -35,6 +49,9 @@ func (this *ViewController) Get() {
 	var chanelTitle, parentTitle, childrenTitle interface{}
 
 	breadcrumb, _, _ := models.GetList(models.GetTableCategory(), 1, 3, orm.NewCondition().And("Id__in", doc["Cid"], doc["ChanelId"], doc["Pid"]))
+	fmt.Print("输出breadcrumb：\n")
+	fmt.Print(breadcrumb)
+	fmt.Print("输出breadcrumb结束\n")
 	for _, v := range breadcrumb {
 		switch fmt.Sprintf("%v", v["Id"]) {
 		case fmt.Sprintf("%v", doc["ChanelId"]):
@@ -55,8 +72,9 @@ func (this *ViewController) Get() {
 			this.Data["CrumbChildren"] = v
 		}
 	}
-
+	fmt.Print("打印表中文档信息开始\n")
 	models.Regulate(models.GetTableDocumentInfo(), "Vcnt", 1, "`Id`=?", id)
+	fmt.Print("打印表中文档信息结束\n")
 	this.Data["PageId"] = "wenku-content"
 	this.Data["Doc"] = doc
 	pages := helper.Interface2Int(doc["Page"])
@@ -68,6 +86,10 @@ func (this *ViewController) Get() {
 	}
 	this.Data["TotalPages"] = pages
 	this.Data["PageShow"] = PageShow
+	fmt.Print("1111111111111111111111\n")
+	fmt.Print(this.Data)
+	fmt.Print("\n")
+	fmt.Print("222222222222222222222\n")
 	if this.Data["Comments"], _, err = models.NewDocumentComment().GetCommentList(id, 1, 10); err != nil {
 		helper.Logger.Error(err.Error())
 	}
@@ -97,6 +119,7 @@ func (this *ViewController) Download() {
 			if err != nil {
 				helper.Logger.Error(err.Error())
 			}
+			fmt.Print("开始下载文档......\n")
 			if rows > 0 {
 				if helper.Interface2Int(info["Status"]) != -1 { //文档未被删除
 					//下载需要的金币[注意：price的值是负值，表示扣除金币]
@@ -125,12 +148,15 @@ func (this *ViewController) Download() {
 							}
 							models.NewCoinLog().LogRecord(logs)
 						}
-
 						file := fmt.Sprintf("%v.%v", info["Md5"], info["Ext"])
+						fmt.Print(file)
+						fmt.Print("aaaaaaaaaaaaaa\n")
 						//设置附件名
 						models.NewOss().SetObjectMeta(file, fmt.Sprintf("%v.%v", info["Title"], info["Ext"]))
 						//链接签名
 						url := models.NewOss().BuildSign(file)
+						fmt.Print(url)
+
 						//文档下载次数+1
 						models.Regulate(models.GetTableDocumentInfo(), "Dcnt", 1, fmt.Sprintf("Id=%v", info["Id"]))
 						if price < 0 { //扣除了金币，则下载可以免费下载

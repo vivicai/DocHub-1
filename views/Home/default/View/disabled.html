@@ -15,7 +15,7 @@
 
                             <div class="wenku-viewer clearfix wenku-unview">
                                 <h1>
-                                    <img alt="{{.Doc.Ext}}文档" src="/static/Home/default/img/{{.Doc.ExtCate}}_24.png"/> {{.Doc.Title}}
+                                    <img alt="{{.Doc.Ext}}文档" src="/static/home/default/img/{{.Doc.ExtCate}}_24.png"/> {{.Doc.Title}}
                                     {{if gt $.AdminId 0}}
                                         <a href="/admin/doc/action?type=remove&id={{.Doc.Id}}" class="text-muted wenku-tooltip wenku-ajax-get" title="将文档移入回收站"><i class="fa fa-recycle"></i></a>
                                     {{end}}
@@ -70,7 +70,7 @@
 
                     <ul class="wenku-tabs-list">
                         {{range .Hots}}
-                        <li><img alt="{{.Ext}}文档" src="/static/Home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
+                        <li><img alt="{{.Ext}}文档" src="/static/home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
                         {{end}}
                     </ul>
                 </div>
@@ -85,7 +85,7 @@
 
                     <ul class="wenku-tabs-list">
                         {{range .News}}
-                        <li><img alt="{{.Ext}}文档" src="/static/Home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
+                        <li><img alt="{{.Ext}}文档" src="/static/home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
                         {{end}}
                     </ul>
 

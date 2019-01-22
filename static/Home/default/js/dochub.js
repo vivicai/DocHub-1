@@ -242,7 +242,7 @@ $(function(){
                                 _this.addClass("disabled");
                                 var tips='<div class="wenku-progress">\n' +
                                     '\t\t<div class="text-center">\n' +
-                                    '\t\t\t<img src="/static/Home/default/img/run.gif" class="thumbnail thumbnail-avatar" alt="玩命上传中" style="width: 200px;margin: 0px auto 15px;">\n' +
+                                    '\t\t\t<img src="/static/home/default/img/run.gif" class="thumbnail thumbnail-avatar" alt="玩命上传中" style="width: 200px;margin: 0px auto 15px;">\n' +
                                     '\t\t\t<h3 class="help-block">玩命上传中，请耐心等待...</h3>\n' +
                                     '<div class="progress progress-striped"><div class="progress-bar progress-bar-success" role="progressbar aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span>0%</span></div></div>' +
                                     '\t\t</div>\n' +

@@ -389,11 +389,14 @@ func ConvertToJpeg(pdffile string, removeFile bool) (cover string, err error) {
 //office文档转pdf，返回转化后的文档路径和错误
 func OfficeToPdf(office string) (err error) {
 	//	soffice --headless --invisible --convert-to pdf doctest.docx
+	//	soffice --headless --invisible --convert-to pdf doctest.docx
 	//soffice := beego.AppConfig.DefaultString("soffice", "soffice")
 	soffice := GetConfig("depend", "soffice", "soffice")
 	dir_slice := strings.Split(office, "/")
 	dir := strings.Join(dir_slice[0:(len(dir_slice)-1)], "/")
 	cmd := exec.Command(soffice, "--headless", "--invisible", "--convert-to", "pdf", office, "--outdir", dir)
+	fmt.Print(cmd)
+	fmt.Print("aaaaaaaaa")
 	if Debug {
 		Logger.Debug("office 文档转 PDF:", cmd.Args)
 	}
@@ -751,6 +754,9 @@ func DownFile(fileUrl, savePath string, cookies string) (md5str, localFile, file
 		ext  string         //文件扩展名
 	)
 	//创建HTTP请求
+	fmt.Print("启动下载文件程序.......................\n")
+	fmt.Print("MD5str为" + md5str + "\n")
+	fmt.Print("localFile为" + localFile + "\n")
 	req := crawl.BuildRequest("get", fileUrl, "", cookies, "mac", true, false)
 	resp, err = req.DoRequest()
 	if err != nil {

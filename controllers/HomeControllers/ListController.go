@@ -92,16 +92,20 @@ func (this *ListController) Get() {
 	}
 
 	lists, rows, err := models.GetDocList(0, helper.Interface2Int(chanels[0]["Id"]), pid, cid, p, listRows, "Id", 0, 1)
-
-	this.Data["PageId"] = "wenku-list"
-	this.Data["Chanel"] = strings.ToLower(chanel)
-	this.Data["CurChanel"] = chanels[0]
-	this.Data["CurPid"] = pid
-	this.Data["CurCid"] = cid
-	this.Data["Lists"] = lists
-	this.Data["Seo"] = models.NewSeo().GetByPage("PC-List", strings.Join(seoStr, "-"), strings.Join(seoStr, ","), strings.Join(seoStr, "-"), this.Sys.Site)
-	this.Data["Page"] = helper.Paginations(6, totalRows, listRows, p, fmt.Sprintf("/list/%v", chanel), "pid", pid, "cid", cid)
-	this.Data["Parents"], _, _ = models.GetList(models.GetTableCategory(), 1, 20, orm.NewCondition().And("Pid", chanels[0]["Id"]), orderBy...)
-	this.Data["PageId"] = "wenku-list"
-	this.TplName = "index.html"
+	if this.IsLogin > 0 {
+		this.Data["PageId"] = "wenku-list"
+		this.Data["Chanel"] = strings.ToLower(chanel)
+		this.Data["CurChanel"] = chanels[0]
+		this.Data["CurPid"] = pid
+		this.Data["CurCid"] = cid
+		this.Data["Lists"] = lists
+		this.Data["Seo"] = models.NewSeo().GetByPage("PC-List", strings.Join(seoStr, "-"), strings.Join(seoStr, ","), strings.Join(seoStr, "-"), this.Sys.Site)
+		this.Data["Page"] = helper.Paginations(6, totalRows, listRows, p, fmt.Sprintf("/list/%v", chanel), "pid", pid, "cid", cid)
+		this.Data["Parents"], _, _ = models.GetList(models.GetTableCategory(), 1, 20, orm.NewCondition().And("Pid", chanels[0]["Id"]), orderBy...)
+		this.Data["PageId"] = "wenku-list"
+		this.TplName = "index.html"
+	} else {
+		this.Redirect("/user/login?t="+time.Now().String(), 302)
+		this.TplName = "login.html"
+	}
 }

@@ -487,24 +487,33 @@ func Pdf2Svg(file string, totalPage int, md5str string) (err error) {
 
 	//文件夹
 	folder := strings.TrimSuffix(strings.ToLower(file), ".pdf")
+	fmt.Print(folder)
 	folder = strings.TrimSuffix(folder, "/")
+	fmt.Print(folder)
+
+	fmt.Print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww")
 	//os.MkdirAll(folder, 0777)//注意：这里不要创建文件夹！！
 	//如果文件夹folder已经存在了，则需要先删除
 	os.MkdirAll(folder, os.ModePerm)
-	defer os.RemoveAll(folder)
+	//defer os.RemoveAll(folder)
 
 	pdf2svg := helper.GetConfig("depend", "pdf2svg", "pdf2svg")
 
 	//compress := beego.AppConfig.DefaultBool("compressSvg", false) //是否压缩svg
-	compress := true                            //强制为true
+	//compress := true                            //强制为true
 	content = helper.ExtractPdfText(file, 1, 5) //提取前5页的PDF文本内容
-	watermarkText := NewSys().GetByField("Watermark").Watermark
+	//watermarkText := NewSys().GetByField("Watermark").Watermark
 	//处理pdf转svg
 	for i := 0; i < totalPage; i++ {
 		num := i + 1
+		//svgfile := fmt.Sprintf("%v/%v.svg", folder, num)
 		svgfile := fmt.Sprintf("%v/%v.svg", folder, num)
 		//Usage: pdf2svg <in file.pdf> <out file.svg> [<page no>]
+		fmt.Print("打印svg文件目录:\n")
+		fmt.Print(svgfile)
+		fmt.Print("打印svg文件目录为上\n")
 		cmd := exec.Command(pdf2svg, file, svgfile, strconv.Itoa(num))
+
 		if helper.Debug {
 			beego.Debug("pdf转svg参数", cmd.Args)
 		}
@@ -524,15 +533,16 @@ func Pdf2Svg(file string, totalPage int, md5str string) (err error) {
 				}
 			}
 			//添加文字水印
-			helper.SvgTextWatermark(svgfile, watermarkText, width/6, height/4)
+			//helper.SvgTextWatermark(svgfile, watermarkText, width/6, height/4)
 
 			//压缩svg内容
-			helper.CompressSvg(svgfile)
-			NewOss().MoveToOss(svgfile, md5str+"/"+strconv.Itoa(num)+".svg", true, true, compress)
+			//helper.CompressSvg(svgfile)
+			//NewOss().MoveToOss(svgfile, md5str+"/"+strconv.Itoa(num)+".svg", true, true, compress)
 		}
 	}
 
 	//将内容更新到数据库
+	fmt.Print("将内容更新到数据库开始\n")
 	if len(content) > 5000 {
 		content = helper.SubStr(content, 0, 4800)
 	}
@@ -541,32 +551,36 @@ func Pdf2Svg(file string, totalPage int, md5str string) (err error) {
 		helper.Logger.Error(err.Error())
 	}
 
+	fmt.Print("将内容更新到数据库结束\n")
+
 	//扫尾工作，如果还存在文件，则继续将文件移到oss
-	filenum := 1 //假设有一个svg或者jpg文件
-	for {
-		files := helper.ScanDir(folder)
-		if filenum > 0 {
-			//将l重置为0
-			filenum = 0
-			for _, file := range files {
-				//svg结尾
-				if strings.HasSuffix(file, ".svg") { //svg结尾的，都是文档页
-					slice := strings.Split(file, "/")
-					NewOss().MoveToOss(file, fmt.Sprintf("%v/%v", md5str, slice[len(slice)-1]), true, true, compress)
-					filenum++ //
-				} else if strings.HasSuffix(file, ".jpg") { //jpg结尾的，基本都是封面图片
-					NewOss().MoveToOss(file, md5str+".jpg", true, true)
-					filenum++
-				}
-			}
-		} else {
-			break
-		}
-	}
+	fmt.Print("将内容更新到数据库2次开始已注释\n")
+	//filenum := 1 //假设有一个svg或者jpg文件
+	//for {
+	//	files := helper.ScanDir(folder)
+	//	if filenum > 0 {
+	//		//将l重置为0
+	//		filenum = 0
+	//		for _, file := range files {
+	//			//svg结尾
+	//			if strings.HasSuffix(file, ".svg") { //svg结尾的，都是文档页
+	//				slice := strings.Split(file, "/")
+	//				NewOss().MoveToOss(file, fmt.Sprintf("%v/%v", md5str, slice[len(slice)-1]), true, true, compress)
+	//				filenum++ //
+	//			} else if strings.HasSuffix(file, ".jpg") { //jpg结尾的，基本都是封面图片
+	//				NewOss().MoveToOss(file, md5str+".jpg", true, true)
+	//				filenum++
+	//			}
+	//		}
+	//	} else {
+	//		break
+	//	}
+	//}
+	fmt.Print("将内容更新到数据库结束已注释\n")
 	//删除文件夹
-	if filenum == 0 {
-		go os.RemoveAll(folder)
-	}
+	//if filenum == 0 {
+	//	go os.RemoveAll(folder)
+	//}
 	return
 }
 
@@ -592,7 +606,9 @@ func ReplaceInto(table string, params map[string]interface{}) (err error) {
 	} else {
 		err = errors.New("需要写入的数据不能为空")
 	}
+	fmt.Print("11111111111111111111111111111111111\n")
 	return
+
 }
 
 //对单表记录进行统计查询

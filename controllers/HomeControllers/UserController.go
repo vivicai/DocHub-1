@@ -393,6 +393,8 @@ func (this *UserController) SendMail() {
 		}
 
 		code := helper.RandStr(6, 0)
+		fmt.Print(code)
+		//发送验证是否成功注释掉了
 		err := models.SendMail(email, fmt.Sprintf("%v会员注册验证码", this.Sys.Site), strings.Replace(this.Sys.TplEmailReg, "{code}", code, -1))
 		if err != nil {
 			helper.Logger.Error("邮件发送失败：%v", err.Error())

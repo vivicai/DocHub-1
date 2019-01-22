@@ -56,6 +56,7 @@ func NewDocumentInfo() *DocumentInfo {
 }
 
 func GetTableDocumentInfo() string {
+	fmt.Print("开始查询打印表中文档信息\n")
 	return getTable("document_info")
 }
 
@@ -360,9 +361,10 @@ func HandlePdf(uid int, tmpfile string, form FormUpload) (err error) {
 		}
 
 		//最后删除本地的PDF文件
-		if err = os.Remove(tmpfile); err != nil {
-			helper.Logger.Error(err.Error())
-		}
+		fmt.Print("删除临时文件已注释掉\n")
+		//if err = os.Remove(tmpfile); err != nil {
+		//	helper.Logger.Error(err.Error())
+		//}
 	}(tmpfile, form.Md5, pageNum)
 
 	return err
