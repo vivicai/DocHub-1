@@ -723,7 +723,8 @@ func (this *UserController) Avatar() {
 		this.ResponseJson(false, "请先登录")
 	}
 
-	dir := fmt.Sprintf("./uploads/%v/%v", time.Now().Format("2006-01-02"), this.IsLogin)
+	//dir := fmt.Sprintf("./uploads/%v/%v", time.Now().Format("2006-01-02"), this.IsLogin)
+	dir := fmt.Sprintf("./static/header")
 	os.MkdirAll(dir, 0777)
 	f, fh, err := this.GetFile("Avatar")
 	if err != nil {
@@ -739,7 +740,8 @@ func (this *UserController) Avatar() {
 		this.ResponseJson(false, "头像图片格式只支持jpg、jpeg、png和gif")
 	}
 	tmpFile := dir + "/" + helper.MyMD5(fmt.Sprintf("%v-%v-%v", fh.Filename, this.IsLogin, time.Now().Unix())) + "." + ext
-	saveFile := helper.MyMD5(tmpFile) + "." + ext
+	//saveFile := helper.MyMD5(tmpFile) + "." + ext 进行了二次加密
+	saveFile := helper.MyMD5(fmt.Sprintf("%v-%v-%v", fh.Filename, this.IsLogin, time.Now().Unix())) + "." + ext
 	err = this.SaveToFile("Avatar", tmpFile)
 	if err != nil {
 		helper.Logger.Error("用户(%v)头像保存失败：%v", this.IsLogin, err.Error())
