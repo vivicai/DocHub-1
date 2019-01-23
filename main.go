@@ -20,7 +20,7 @@ func main() {
 func init() {
 
 	fmt.Println("")
-	fmt.Println("Powered By DocHub")
+	fmt.Println("Powered By Chavaz")
 	fmt.Println("Version:", helper.VERSION)
 	fmt.Println("")
 
