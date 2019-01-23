@@ -85,7 +85,8 @@
                 <div class="carousel-inner">
 				{{range $index,$banner:=.Banners}}
                     <a href="{{.Link}}" target="_blank" title="{{.Title}}" class="item {{if eq $index 0}}active{{end}}">
-                        <img src="{{DefPic .Picture "banner"}}" alt="{{.Title}}">
+                        {{/*<img src="{{DefPic .Picture "banner"}}" alt="{{.Title}}">*/}}
+						<img src="static/banner/{{.Picture}} " alt="{{.Title}}">
                         <div class="carousel-caption">{{.Title}}</div>
                     </a>
 				{{end}}

@@ -110,6 +110,7 @@ func (*Oss) DefaultPicture(picture, style string, ext ...string) (url string) {
 	case "avatar", "cover", "banner":
 		return NewOss().PreviewUrl + picture + "/" + style
 	}
+	fmt.Print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa333333333333333333333333333\n")
 	return NewOss().PreviewUrl + picture //返回默认图片
 }
 

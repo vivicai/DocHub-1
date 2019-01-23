@@ -35,19 +35,23 @@ func (this *BannerController) Add() {
 	f, h, err := this.GetFile("Picture")
 	if err == nil {
 		defer f.Close()
-		dir := "uploads/" + time.Now().Format("2006-01-02")
+		//dir := "uploads/" + time.Now().Format("2006-01-02")
+		dir := "static/banner/"
 		os.MkdirAll(dir, 0777)
 		ext := helper.GetSuffix(h.Filename, ".")
-		filepath := dir + "/" + helper.MyMD5(fmt.Sprintf("%v-%v", h.Filename, time.Now().Unix())) + "." + ext
-		err = this.SaveToFile("Picture", filepath) // 保存位置
+		filepath := dir + helper.MyMD5(fmt.Sprintf("%v-%v", h.Filename, time.Now().Unix())) + "." + ext
+		files := helper.MyMD5(fmt.Sprintf("%v-%v", h.Filename, time.Now().Unix())) + "." + ext //添加文件作为本地访问使用
+		err = this.SaveToFile("Picture", filepath)                                             // 保存位置
+		fmt.Print(err)
 		if err == nil {
+			//if md5str, err := helper.FileMd5(filepath); err == nil {
 			if md5str, err := helper.FileMd5(filepath); err == nil {
-				save := md5str + "." + ext
+				save := md5str + "." + ext //进行了二次加密导致和本地加密后的图片名字不一致，故这里不使用此二次加密作为本地访问名字
 				err = models.NewOss().MoveToOss(filepath, save, true, true)
 				if err == nil {
 					var banner models.Banner
 					this.ParseForm(&banner)
-					banner.Picture = save
+					banner.Picture = files
 					banner.TimeCreate = int(time.Now().Unix())
 					banner.Status = true
 					_, err = orm.NewOrm().Insert(&banner)

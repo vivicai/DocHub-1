@@ -395,8 +395,6 @@ func OfficeToPdf(office string) (err error) {
 	dir_slice := strings.Split(office, "/")
 	dir := strings.Join(dir_slice[0:(len(dir_slice)-1)], "/")
 	cmd := exec.Command(soffice, "--headless", "--invisible", "--convert-to", "pdf", office, "--outdir", dir)
-	fmt.Print(cmd)
-	fmt.Print("aaaaaaaaa")
 	if Debug {
 		Logger.Debug("office 文档转 PDF:", cmd.Args)
 	}
