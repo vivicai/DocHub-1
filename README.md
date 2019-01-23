@@ -12,8 +12,14 @@
 
 
 更新日志：2019/1/18<br>
-1.更改了文件转化为svg格式后取消本地文件删除功能及不上传到OSS<br>
-2.由于本人进行了偷懒直接将上传的文件放至static/home/default/img下便于html直接调用<br>
+1、更改了文件转化为svg格式后取消本地文件删除功能及不上传到OSS<br>
+2、由于本人进行了偷懒直接将上传的文件放至static/home/default/img下便于html直接调用<br>
+
+
+更新日志：2019/1/23<br>
+1、修改了文件上传位置，便于后期维护<br>
+2、修改了banner轮播图上传位置改为本地<br>
+
 
 相关文档介绍参考:<br>
 https://github.com/TruthHun/DocHub<br>
