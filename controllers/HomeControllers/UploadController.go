@@ -66,7 +66,7 @@ func (this *UploadController) Post() {
 		ext     string //文档扩展名
 		tmpfile string //存在服务器的临时文件
 		//dir     = fmt.Sprintf("./uploads/%v/%v", time.Now().Format("2006/01/02"), this.IsLogin)
-		dir  = fmt.Sprintf("./static/home/default/img")
+		dir  = fmt.Sprintf("./static/doc")
 		form models.FormUpload
 		err  error
 	)

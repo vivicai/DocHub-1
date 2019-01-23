@@ -41,14 +41,14 @@
                         {{range $index,$el:=.PreviewPages}}
                             {{if gt $index 1}}
                                 {{/*{{Xmd5 $.Doc.Md5}}*/}}
-                            <img src="/static/Common/img/loading.gif" data-original="{{$.PreviewDomain}}/static/home/default/img/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
+                            <img src="/static/Common/img/loading.gif" data-original="{{$.PreviewDomain}}/static/doc/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
                             {{else}}
-                            <img src="{{$.PreviewDomain}}/static/home/default/img/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
+                            <img src="{{$.PreviewDomain}}/static/doc/{{Xmd5 $.Doc.Md5}}/{{CalcInt $index "+" 1}}.{{Default $.Doc.PreviewExt "svg"}}" class="wenku-lazy wenku-viewer-img wenku-page{{CalcInt $index "+" 1}}" data-page="{{CalcInt $index "+" 1}}" alt="{{$.Doc.Title}} 第 {{CalcInt $index "+" 1}} 页">
                             {{end}}
                         {{end}}
 
                         {{if gt $.TotalPages $.PageShow}}
-                        <div class="wenku-viewer-more text-center" data-next="{{CalcInt $.PageShow "+" 1}}" data-ext="{{Default $.Doc.PreviewExt "svg"}}" data-svg="{{$.PreviewDomain}}/static/home/default/img/{{Xmd5 $.Doc.Md5}}/">
+                        <div class="wenku-viewer-more text-center" data-next="{{CalcInt $.PageShow "+" 1}}" data-ext="{{Default $.Doc.PreviewExt "svg"}}" data-svg="{{$.PreviewDomain}}/static/doc/{{Xmd5 $.Doc.Md5}}/">
 
                             {{/*<div>下载文档到电脑，方便使用</div>*/}}
                             {{/*<div><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#ModalDownload"><i class="fa fa-cloud-download"></i> 下载文档</a></div>*/}}
