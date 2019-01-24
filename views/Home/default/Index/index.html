@@ -1,4 +1,17 @@
+<link href="/static/home/default/css/lanren.css" type="text/css" rel="stylesheet" />
 <div class="container">
+	<div id="rightArrow"><a href="javascript:;" title="在线客户"></a></div>
+	<div id="floatDivBoxs">
+		<div class="floatDtt">管理员</div>
+		<div class="floatShadow">
+			<ul class="floatDqq">
+				<li><a target="_blank" href="tencent://message/?uin=975460284&Site=sc.chinaz.com&Menu=yes"><img src="/static/home/default/img//qq.png" align="absmiddle">超级管理员</a></li>
+			</ul>
+			<div class="floatImg"><img src="/static/home/default/img/erweima.jpg" width="100%">微信企业号</div>
+		</div>
+		<div class="floatDbg"></div>
+	</div>
+
 	<div class="row mobile-banner">
 
 		<div class="col-xs-3 wenku-nopadding wenku-pdl-15px pull-right">
@@ -185,3 +198,22 @@
 
 </div>
 
+<script src="/static/home/default/js/jquery-1.9.1.min.js"></script>
+<script>
+	$(function(){
+		var flag=0;
+		$('#rightArrow').on("click",function(){
+			if(flag==1){
+				$("#floatDivBoxs").animate({right: '-175px'},300);
+				$(this).animate({right: '-5px'},300);
+				$(this).css('background-position','-50px 0');
+				flag=0;
+			}else{
+				$("#floatDivBoxs").animate({right: '0'},300);
+				$(this).animate({right: '170px'},300);
+				$(this).css('background-position','0px 0');
+				flag=1;
+			}
+		});
+	});
+</script>
