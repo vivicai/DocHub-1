@@ -11,7 +11,7 @@
   		<div class="container">
 			<div class="col-xs-6">
 				<a href="/" title="{{.Sys.Site}}">
-					{{/*<img alt="{{.Sys.Site}}" class="wenku-logo" src="{{.TplStatic}}/img/logo.png"/>*/}}
+					<img alt="{{.Sys.Site}}" class="wenku-logo" src="{{.TplStatic}}/img/logo.png"/>
 				</a>
 			</div>
 			<div class="col-xs-6">
@@ -39,23 +39,23 @@
                 {{/*<a class="navbar-brand" href="#"></a>*/}}
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li {{if .IsHome}}class="active"{{end}}><a href="/">首页</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            频道 <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            {{range .Chanels}}
-                                <li {{if Equal $.Chanel .Alias}}class="active"{{end}}><a href="/list/{{.Alias}}">{{.Title}}</a></li>
-                            {{end}}
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                {{/*<ul class="nav navbar-nav">*/}}
+                    {{/*<li {{if .IsHome}}class="active"{{end}}><a href="/">首页</a></li>*/}}
+                    {{/*<li class="dropdown">*/}}
+                        {{/*<a href="#" class="dropdown-toggle" data-toggle="dropdown">*/}}
+                            {{/*频道 <b class="caret"></b>*/}}
+                        {{/*</a>*/}}
+                        {{/*<ul class="dropdown-menu">*/}}
+                            {{/*{{range .Chanels}}*/}}
+                                {{/*<li {{if Equal $.Chanel .Alias}}class="active"{{end}}><a href="/list/{{.Alias}}">{{.Title}}</a></li>*/}}
+                            {{/*{{end}}*/}}
+                        {{/*</ul>*/}}
+                    {{/*</li>*/}}
+                {{/*</ul>*/}}
+                {{/*<ul class="nav navbar-nav navbar-right">*/}}
                     {{/*<li {{if .IsUpload}}class="active"{{end}}><a href="/upload"><span class="fa fa-upload"></span> 上传文档</a></li>*/}}
-                    <li {{if .IsUser}}class="active"{{end}}><a href="/user"><span class="fa fa-user"></span> 会员中心</a></li>
-                </ul>
+                    {{/*<li {{if .IsUser}}class="active"{{end}}><a href="/user"><span class="fa fa-user"></span> 会员中心</a></li>*/}}
+                {{/*</ul>*/}}
             </div>
         </div>
     </nav>

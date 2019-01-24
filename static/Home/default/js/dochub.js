@@ -5,7 +5,6 @@
  * */
 'use strict';
 $(function(){
-    console.log("Powered By DocHub");
 
     
     $(".go-top").click(function(){
@@ -726,7 +725,7 @@ $(function(){
 		}else{
 			cls="success";
 			// position="mid-center";
-			close=false;
+			// close=false;
 		}
         $.toast({
 		    text: msg, // Text that is to be shown in the toast
