@@ -25,10 +25,6 @@ dochub4test
 
 cache/runtime/
 logs/
-static/doc/*
-static/banner/*
-static/header/*
-
 # Thumbnails
 ._*
 
