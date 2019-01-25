@@ -1,4 +1,4 @@
-![LOGO](static/home/default/img/logo.png)
+
 
 ------
 
