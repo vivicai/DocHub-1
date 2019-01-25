@@ -121,13 +121,12 @@ $(function(){
 			}
 
 			//检验上传的文档是否符合要求
-			$.each(accept, function(i,v) {    
+			$.each(accept, function(i,v) {
 				if(ext.toLowerCase()==v){
 					flag=true;
 					return true;
 				}
 			});
-
 			if(!flag){
 				_this.val("");
 				wenku_alert("danger","您上传的文档格式不符合要求",3000,"");

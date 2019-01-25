@@ -338,6 +338,8 @@ func SearchByMysql(wd, sourceType, order string, p, listRows int) (data []orm.Pa
 		ExtNum = helper.EXT_NUM_PDF
 	case "txt":
 		ExtNum = helper.EXT_NUM_TEXT
+	case "ceb":
+		ExtNum = helper.EXT_NUM_CEB
 	case "other":
 		ExtNum = helper.EXT_NUM_OTHER
 	}

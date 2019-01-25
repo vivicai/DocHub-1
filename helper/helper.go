@@ -313,6 +313,9 @@ func GetExtCate(ext string) (extCate string, extNum int) {
 	case "txt":
 		extCate = EXT_CATE_TEXT
 		extNum = EXT_NUM_TEXT
+	case "ceb":
+		extCate = EXT_CATE_CEB
+		extNum = EXT_NUM_CEB
 	case EXT_CATE_OTHER_UMD, EXT_CATE_OTHER_CHM, EXT_CATE_OTHER_EPUB, EXT_CATE_OTHER_MOBI: // cate other
 		extCate = ext
 	}
@@ -335,6 +338,8 @@ func GetExtCateByExtNum(num int) (extCate string) {
 		extCate = EXT_CATE_PDF
 	case EXT_NUM_TEXT:
 		extCate = EXT_CATE_TEXT
+	case EXT_NUM_CEB:
+		extCate = EXT_CATE_CEB
 	case EXT_NUM_OTHER:
 		extCate = EXT_CATE_OTHER
 	}

@@ -30,6 +30,8 @@ const (
 	EXT_NUM_TEXT        = 5
 	EXT_CATE_OTHER      = "other"
 	EXT_NUM_OTHER       = 6
+	EXT_CATE_CEB        = "ceb"
+	EXT_NUM_CEB         = 7
 	EXT_CATE_OTHER_MOBI = "mobi"
 	EXT_CATE_OTHER_EPUB = "epub"
 	EXT_CATE_OTHER_CHM  = "chm"
@@ -53,5 +55,5 @@ var (
 	IsInstalled = false
 
 	//允许上传的文档扩展名
-	AllowedUploadExt = ",doc,docx,rtf,wps,odt,ppt,pptx,pps,ppsx,dps,odp,pot,xls,xlsx,et,ods,txt,pdf,chm,epub,umd,mobi,"
+	AllowedUploadExt = ",doc,docx,rtf,wps,odt,ppt,pptx,pps,ppsx,dps,odp,pot,xls,xlsx,et,ods,txt,pdf,chm,epub,umd,mobi,ceb,"
 )
